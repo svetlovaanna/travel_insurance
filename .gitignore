@@ -30,12 +30,5 @@
 *.iws
 *.iml
 *.ipr
-/student_pavlo_kutsyn/documentation/
-/student_pavlo_kutsyn/___forExp/
-/project
-
-student_andrei_larionov/v2/doc-generator-app/docs/proposals/*
-
-/student_aleksandrs_anohins/documentation/xx_my_notes.txt
 
 /amplicode.xml
