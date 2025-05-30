@@ -75,3 +75,32 @@ jobs:
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
  #   - name: Generate and submit dependency graph
  #     uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+
+        # ==============================================
+        # 5. Уведомления в Telegram
+        # ==============================================
+    - name: Telegram Success
+      if: success()
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        message: |
+          ✅ *Сборка успешна* 
+          Репозиторий: ${{ github.repository }}
+          Коммит: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})
+          Логи: [Посмотреть](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+          parse_mode: markdown
+
+    - name: Telegram Failure
+      if: failure()
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        message: |
+          ❌ *Сборка провалена* 
+           Репозиторий: ${{ github.repository }}
+           Коммит: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})
+           Логи: [Посмотреть](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+           parse_mode: markdown
