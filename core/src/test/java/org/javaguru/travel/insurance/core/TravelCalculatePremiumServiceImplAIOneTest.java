@@ -39,7 +39,8 @@ class TravelCalculatePremiumServiceImplAIOneTest {
 
         // Проверка
         assertAll(
-                () -> assertEquals("Анна", response.getPersonFirstName()),
+                () -> assertNotEquals("Анна", response.getPersonFirstName(),
+                        "Имя не должно быть 'Anna'. Актуальное значение: " + response.getPersonFirstName()),
                 () -> assertEquals("Светлова", response.getPersonLastName()),
                 () -> assertEquals(parseDate("2025-08-10"), response.getAgreementDateFrom()),
                 () -> assertEquals(parseDate("2025-08-20"), response.getAgreementDateTo())

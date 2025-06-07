@@ -41,15 +41,5 @@ class TravelCalculatePremiumServiceImplTest {
     }
 
 
-/*
 
-//TODO разбраться подробнее с фейл статусами
-        //        request.setPersonFirstName("aaa");
-        assertAll("Проверка всех свойств пользователя",
-                () -> assertEquals(response.getPersonFirstName(), request.getPersonFirstName(), "Имя не совпадает"),
-                () -> assertEquals(response.getPersonLastName(), request.getPersonLastName(), "Фамилия не совпадает"),
-                () -> assertEquals(response.getAgreementDateFrom(), request.getAgreementDateFrom(), "Дата ОТ не совпадает"),
-                () -> assertEquals(response.getAgreementDateTo(), request.getAgreementDateTo(), "Дата ДО не совпадает")
-        );
-*/
 }
