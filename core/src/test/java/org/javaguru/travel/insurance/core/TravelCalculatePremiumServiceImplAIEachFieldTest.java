@@ -5,6 +5,7 @@ import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -22,9 +23,15 @@ class TravelCalculatePremiumServiceImplAIEachFieldTest {
 
     // Вспомогательный метод для создания дат
     private Date parseDate(String dateStr) throws Exception {
-        return dateFormat.parse(dateStr);
+        if (dateStr == null || dateStr.trim().isEmpty()) {
+            return new Date(); // null + пустые строки → текущая дата
+        }
+        try {
+            return dateFormat.parse(dateStr);
+        } catch (ParseException e) {
+            throw new Exception("Ошибка парсинга даты: " + dateStr, e);
+        }
     }
-
     // Тесты для каждого свойства отдельно
 
     @Test
