@@ -18,12 +18,17 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
         response.setPersonLastName(request.getPersonLastName());
         response.setAgreementDateFrom(request.getAgreementDateFrom());
         response.setAgreementDateTo(request.getAgreementDateTo());
+        response.setAgreementPrice(calculateDays(request));
 
-        long diff = request.getAgreementDateFrom().getTime() - request.getAgreementDateTo().getTime();
-        var daysBetween = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-        response.setAgreementPrice(new BigDecimal(daysBetween));
+
 
         return response;
+    }
+
+    private BigDecimal calculateDays ( TravelCalculatePremiumRequest request){
+        long diff = request.getAgreementDateTo().getTime() - request.getAgreementDateFrom().getTime();
+        var daysBetween = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        return BigDecimal.valueOf(daysBetween);
     }
 
 }
