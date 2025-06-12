@@ -12,7 +12,9 @@ class DateTimeServiceTest {
     public void shouldEquals() {
         Date from = new Date();
         Date to = new Date();
-        assertEquals(from.toString(), to.toString());
+        DateTimeService service = new DateTimeService();
+        var result = service.calculateDays(from, to);
+        assertEquals(0, result.longValue());
     }
 
 }
