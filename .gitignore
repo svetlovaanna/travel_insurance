@@ -32,3 +32,5 @@
 *.ipr
 
 /amplicode.xml
+qodana.yaml
+.qodana

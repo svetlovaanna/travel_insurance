@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class InsuranceApplication {
-
+    int unused = 10;
     public static void main(String[] args) {
         SpringApplication.run(InsuranceApplication.class, args);
     }
