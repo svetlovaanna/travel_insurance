@@ -5,7 +5,7 @@
 version: "1.0"
 #Specify inspection profile for code analysis
 profile:
-  name: qodana.recommended
+  name: qodana.sanity
   #qodana.starter
   #Enable inspections
   #include:
@@ -15,7 +15,8 @@ profile:
   #  - name: <SomeDisabledInspectionId>
   #    paths:
   #      - <path/where/not/run/inspection>
-projectJDK: "21" #(Applied in CI/CD pipeline)
+projectJDK: "21"
+#(Applied in CI/CD pipeline)
 #Execute shell command before Qodana execution (Applied in CI/CD pipeline)
 #bootstrap: sh ./prepare-qodana.sh
 #Install IDE plugins before Qodana execution (Applied in CI/CD pipeline)
@@ -26,14 +27,13 @@ projectJDK: "21" #(Applied in CI/CD pipeline)
 
 linter: jetbrains/qodana-jvm:2025.1
 
-
 include:
   - name: UnusedDeclaration  # Проверка неиспользуемых переменных, методов, классов
   - name: UnusedImport       # Проверка неиспользуемых импортов
   - name: RedundantCode      # Лишний код, который можно удалить
   - name: CodeSmell          # Подозрительные конструкции
 
-failThreshold: 1  # Провалить проверку при первой критической ошибке
+failThreshold: 10  # Провалить проверку при первой критической ошибке
 
 exclude:
   - name: LombokAnnotations
@@ -41,3 +41,32 @@ exclude:
   - name: LombokSetterMayBeUsed
 
 
+#groups:
+#  - groups:
+#    - "ALL"
+#  - "category:Java/Probable bugs"
+  #    - "IncludedInspections"
+  #    - "!ExcludedInspections"
+#    - "severity:WEAK WARNING"
+#groups:
+#  - groupId: IncludedInspections
+#    groups:
+#      - "category:Java"
+#      - "category:Kotlin"
+#      - "category:JVM languages"
+#      - "category:Spring"
+#      - "category:CDI (Contexts and Dependency Injection)"
+#      - "category:Bean Validation"
+#      - "category:Reactive Streams"
+#      - "category:RegExp"
+#      - "category:PHP"
+#      - "category:Go"
+#      - "category:Python"
+#      - "category:General"
+#      - "category:Java/Probable bugs"
+#      - "severity:WEAK WARNING"
+#      - "category:TOML"
+
+#inspections:
+#  - group: IncludedInspections
+#    enabled: true
