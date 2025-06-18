@@ -5,7 +5,7 @@
 version: "1.0"
 #Specify inspection profile for code analysis
 profile:
-  name: qodana.sanity
+  name: qodana.recommended
   #qodana.starter
   #Enable inspections
   #include:
@@ -32,6 +32,17 @@ include:
   - name: UnusedImport       # Проверка неиспользуемых импортов
   - name: RedundantCode      # Лишний код, который можно удалить
   - name: CodeSmell          # Подозрительные конструкции
+  - name: UNUSED_IMPORT
+  - name: JavaLangImport
+  - name: GroovyUnusedDeclaration
+  - name: unused
+  - name: UnusedLibrary
+  - name: UnusedLabel
+  - name: UnusedAssignment
+  - name: SuppressionAnnotation
+  - name: JvmLinesOfCodeInspection
+  - name: GroovyUnusedAssignment
+
 
 failThreshold: 10  # Провалить проверку при первой критической ошибке
 
