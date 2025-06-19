@@ -45,16 +45,16 @@ jobs:
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
-    # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
-    # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
-    #
-    # - name: Setup Gradle
-    #   uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-    #   with:
-    #     gradle-version: '8.9'
-    #
-    # - name: Build with Gradle 8.9
-    #   run: gradle build
+# NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
+# If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
+#
+# - name: Setup Gradle
+#   uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+#   with:
+#     gradle-version: '8.9'
+#
+# - name: Build with Gradle 8.9
+#   run: gradle build
 
 #  dependency-submission:
 
@@ -70,10 +70,37 @@ jobs:
 #        java-version: '21'
 #        distribution: 'temurin'
 
-    # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
-    # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
+# Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
+# See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
  #   - name: Generate and submit dependency graph
  #     uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+
+
+        # ==============================================
+        # 3. Пуш в ОБЩИЙ репозиторий
+        # ==============================================
+    - name: Push to Common Repo
+      if: success()
+      env:
+          COMMON_REPO: "https://github.com/svetlovaanna/travel_test.git"
+          TARGET_FOLDER: "student_anna_svetlova"
+      run: |
+          git config --global user.name "${{ github.event.head_commit.author.name }}"
+          git config --global user.email "${{ github.event.head_commit.author.email }}"
+            
+            git clone --filter=blob:none --no-checkout $COMMON_REPO common-repo-tmp
+            cd common-repo-tmp
+            git sparse-checkout init --cone
+            git sparse-checkout set $TARGET_FOLDER
+            git checkout main
+            git pull origin main
+            
+            rm -rf $TARGET_FOLDER
+            cp -r ../../your-folder $TARGET_FOLDER
+            
+            git add .
+            git commit -m "${{ github.event.head_commit.message }}" --author="${{ github.event.head_commit.author.name }} <${{ github.event.head_commit.author.email }}>"
+            git push https://${{ secrets.PUBLIC_REPO_TOKEN }}@github.com/common-org/common-repo.git main
 
         # ==============================================
         # 5. Уведомления в Telegram
