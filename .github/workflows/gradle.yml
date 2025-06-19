@@ -75,7 +75,6 @@ jobs:
  #   - name: Generate and submit dependency graph
  #     uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
 
-
         # ==============================================
         # 3. Пуш в ОБЩИЙ репозиторий
         # ==============================================
@@ -83,8 +82,8 @@ jobs:
       if: success()
       env:
         AUTH_REPO_URL: "https://${{ secrets.PUBLIC_REPO_TOKEN }}@github.com/svetlovaanna/travel_test.git"
-        COMMON_REPO: "https://github.com/svetlovaanna/travel_test.git"
-        TARGET_FOLDER: "student_anna_svetlova"
+#        COMMON_REPO: "https://github.com/svetlovaanna/travel_test.git"
+        TARGET_FOLDER: "core"
       run: |
 #        git config --global user.name "GitHub Actions"
 #        git config --global user.email "actions@github.com"
