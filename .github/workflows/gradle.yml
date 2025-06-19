@@ -120,7 +120,6 @@ jobs:
         GIT_COMMITTER_EMAIL="191621076+svetlovaanna@users.noreply.github.com" \
 #        git commit -m "$COMMIT_MSG" --gpg-sign="$KEY_ID" --author="Anna <191621076+svetlovaanna@users.noreply.github.com>"
 
-#  git push origin main
 
         # ==============================================
         # 5. Уведомления в Telegram
