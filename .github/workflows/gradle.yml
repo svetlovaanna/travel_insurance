@@ -95,12 +95,12 @@ jobs:
         git clone $AUTH_REPO_URL common-repo-tmp
         cd common-repo-tmp
              
-        if ! git show-ref --quiet refs/heads/main; then
-          git checkout --orphan main
-          git rm -rf .
-        else
-          git checkout main
-        fi
+#        if ! git show-ref --quiet refs/heads/main; then
+#          git checkout --orphan main
+#          git rm -rf .
+#        else
+#          git checkout main
+#        fi
         
         git sparse-checkout init --cone
         git sparse-checkout set $TARGET_FOLDER
