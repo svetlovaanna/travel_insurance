@@ -100,7 +100,7 @@ jobs:
             
             git add .
             git commit -m "${{ github.event.head_commit.message }}" --author="${{ github.event.head_commit.author.name }} <${{ github.event.head_commit.author.email }}>"
-            git push https://${{ secrets.PUBLIC_REPO_TOKEN }}@github.com/common-org/common-repo.git main
+            git push https://${{ secrets.PUBLIC_REPO_TOKEN }}@github.com/svetlovaanna/travel_test.git main
 
         # ==============================================
         # 5. Уведомления в Telegram
