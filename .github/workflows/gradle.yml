@@ -114,14 +114,16 @@ jobs:
 
         git add $TARGET_FOLDER
         COMMIT_MSG="${{ github.event.head_commit.message || 'Signed sync from Anna' }}"
-
-        echo "$COMMIT_MSG" | git commit -F - --gpg-sign="$KEY_ID" || echo "No changes"
+  
         GIT_COMMITTER_NAME="Anna" \
         GIT_COMMITTER_EMAIL="191621076+svetlovaanna@users.noreply.github.com" \
-#        git commit -m "$COMMIT_MSG" --gpg-sign="$KEY_ID" --author="Anna <191621076+svetlovaanna@users.noreply.github.com>"
+        git commit -m "$COMMIT_MSG" --gpg-sign="$KEY_ID" --author="Anna <191621076+svetlovaanna@users.noreply.github.com>" || echo "No changes"
+  
+        git push origin main
 
 
-        # ==============================================
+
+# ==============================================
         # 5. Уведомления в Telegram
         # ==============================================
     - name: Telegram Success
