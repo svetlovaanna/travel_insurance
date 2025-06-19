@@ -97,10 +97,10 @@ jobs:
         echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
         echo RELOADAGENT | gpg-connect-agent
 
-        git config --global user.name "$GIT_COMMITTER_NAME"
-        git config --global user.email "$GIT_COMMITTER_EMAIL"
+        git config --global user.name "Anna"
+        git config --global user.email "191621076+svetlovaanna@users.noreply.github.com"
         git config --global commit.gpgsign true
-        git config --global user.signingkey "$KEY_ID"
+        git config --global user.signingkey "0D978B848B18739D"
         git config --global gpg.program gpg
 
         git clone --filter=blob:none --sparse $AUTH_REPO_URL target-repo
