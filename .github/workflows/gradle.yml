@@ -79,39 +79,46 @@ jobs:
 # 3. Пуш в ОБЩИЙ репозиторий
 # ==============================================
 
-    - name: Push only 'core' module to target repo
-      if: success()
+    - name: Import GPG key and sign commit (✔️ Verified)
       env:
-        AUTH_REPO_URL: https://${{ secrets.PUBLIC_REPO_TOKEN }}@github.com/svetlovaanna/travel_test.git
+        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        GIT_COMMITTER_NAME: "Anna"
+        GIT_COMMITTER_EMAIL: "12345678+svetlovaanna@users.noreply.github.com"
         TARGET_FOLDER: "core"
+        AUTH_REPO_URL: https://${{ secrets.PUBLIC_REPO_TOKEN }}@github.com/svetlovaanna/travel_test.git
       run: |
         set -e
-      
-        # Fallback автор: используем actor, если head_commit пуст
-        #AUTHOR_NAME="${{ github.event.head_commit.author.name || github.actor }}"
-        #AUTHOR_EMAIL="${{ github.event.head_commit.author.email || github.actor }}@users.noreply.github.com"
-      
-        #git config --global user.name "$AUTHOR_NAME"
-        #git config --global user.email "$AUTHOR_EMAIL"
-        git config --global user.name "Anna"
-        git config --global user.email "191621076+svetlovaanna@users.noreply.github.com"
-        # Клонируем целевой репозиторий с sparse checkout
+
+        echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+        KEY_ID=$(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2)
+
+        echo "use-agent" >> ~/.gnupg/gpg.conf
+        echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
+        echo RELOADAGENT | gpg-connect-agent
+
+        git config --global user.name "$GIT_COMMITTER_NAME"
+        git config --global user.email "$GIT_COMMITTER_EMAIL"
+        git config --global commit.gpgsign true
+        git config --global user.signingkey "$KEY_ID"
+        git config --global gpg.program gpg
+
         git clone --filter=blob:none --sparse $AUTH_REPO_URL target-repo
         cd target-repo
-      
+
         git sparse-checkout set $TARGET_FOLDER
         git checkout main || git checkout -b main
-      
-        # Обновляем только нужную директорию
-        rm -rf $TARGET_FOLDER
-        mkdir -p $TARGET_FOLDER
-        cp -r ../$TARGET_FOLDER/* $TARGET_FOLDER/
-      
-        git add $TARGET_FOLDER
-        COMMIT_MSG="${{ github.event.head_commit.message || 'Auto-sync core module from source repo' }}"
-        git commit -m "$COMMIT_MSG" || echo "No changes to commit"
-        git push origin main
 
+        rm -rf $TARGET_FOLDER
+        cp -r ../$TARGET_FOLDER $TARGET_FOLDER
+
+        git add $TARGET_FOLDER
+        COMMIT_MSG="${{ github.event.head_commit.message || 'Signed sync from Anna' }}"
+
+        echo "$COMMIT_MSG" | git commit -F - --gpg-sign="$KEY_ID" || echo "No changes"
+        git push origin main
+        
+        
         # ==============================================
         # 5. Уведомления в Telegram
         # ==============================================
