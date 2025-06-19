@@ -118,7 +118,6 @@ jobs:
         echo "$COMMIT_MSG" | git commit -F - --gpg-sign="$KEY_ID" || echo "No changes"
         git push origin main
         
-        
         # ==============================================
         # 5. Уведомления в Telegram
         # ==============================================
