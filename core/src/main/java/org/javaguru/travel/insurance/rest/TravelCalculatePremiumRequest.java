@@ -3,7 +3,6 @@ package org.javaguru.travel.insurance.rest;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
-import java.text.ParseException;
 
 @Getter @Setter
 public class TravelCalculatePremiumRequest {

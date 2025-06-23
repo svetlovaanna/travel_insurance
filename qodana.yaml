@@ -5,7 +5,11 @@
 version: "1.0"
 #Specify inspection profile for code analysis
 profile:
-  name: qodana.recommended
+  name: qodana.starter
+
+baseProfile: Default
+
+  #qodana.recommended
   #qodana.starter
   #Enable inspections
   #include:
@@ -45,39 +49,3 @@ include:
 
 
 failThreshold: 10  # Провалить проверку при первой критической ошибке
-
-exclude:
-  - name: LombokAnnotations
-  - name: LombokGetterMayBeUsed
-  - name: LombokSetterMayBeUsed
-
-
-#groups:
-#  - groups:
-#    - "ALL"
-#  - "category:Java/Probable bugs"
-  #    - "IncludedInspections"
-  #    - "!ExcludedInspections"
-#    - "severity:WEAK WARNING"
-#groups:
-#  - groupId: IncludedInspections
-#    groups:
-#      - "category:Java"
-#      - "category:Kotlin"
-#      - "category:JVM languages"
-#      - "category:Spring"
-#      - "category:CDI (Contexts and Dependency Injection)"
-#      - "category:Bean Validation"
-#      - "category:Reactive Streams"
-#      - "category:RegExp"
-#      - "category:PHP"
-#      - "category:Go"
-#      - "category:Python"
-#      - "category:General"
-#      - "category:Java/Probable bugs"
-#      - "severity:WEAK WARNING"
-#      - "category:TOML"
-
-#inspections:
-#  - group: IncludedInspections
-#    enabled: true
