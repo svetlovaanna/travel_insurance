@@ -1,6 +1,7 @@
 package org.javaguru.travel.insurance.core;
 
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
+import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequestBuilder;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ class TravelCalculatePremiumServiceImplAIOneTest {
     @Test
     void calculatePremium_ShouldReturnAllProperties() throws Exception {
         // Подготовка
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequestBuilder().createTravelCalculatePremiumRequest();
         request.setPersonFirstName("Анна");
         request.setPersonLastName("Светлова");
         request.setAgreementDateFrom(parseDate("2025-08-10"));

@@ -1,6 +1,7 @@
 package org.javaguru.travel.insurance.core;
 
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
+import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequestBuilder;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -38,7 +39,7 @@ class TravelCalculatePremiumServiceImplAIEachFieldTest {
     @Disabled("This test is disabled for now")
     @Test
     void shouldReturnCorrectFirstName() throws Exception {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequestBuilder().createTravelCalculatePremiumRequest();
         request.setPersonFirstName("Игорь");
 
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
@@ -47,7 +48,7 @@ class TravelCalculatePremiumServiceImplAIEachFieldTest {
     @Disabled("This test is disabled for now")
     @Test
     void shouldReturnCorrectLastName() throws Exception {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequestBuilder().createTravelCalculatePremiumRequest();
         request.setPersonLastName("Петренко");
 
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
@@ -56,7 +57,7 @@ class TravelCalculatePremiumServiceImplAIEachFieldTest {
     @Disabled("This test is disabled for now")
     @Test
     void shouldReturnCorrectDateFrom() throws Exception {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequestBuilder().createTravelCalculatePremiumRequest();
         request.setAgreementDateFrom(parseDate("2025-09-01"));
 
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
@@ -65,7 +66,7 @@ class TravelCalculatePremiumServiceImplAIEachFieldTest {
     @Disabled("This test is disabled for now")
     @Test
     void shouldReturnCorrectDateTo() throws Exception {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequestBuilder().createTravelCalculatePremiumRequest();
         request.setAgreementDateTo(parseDate("2025-09-15"));
 
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
