@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import java.util.Date;
 
-@Builder(toBuilder = true)
+@Builder //(toBuilder = true)
 @Getter @Setter
 public class TravelCalculatePremiumRequest {
 

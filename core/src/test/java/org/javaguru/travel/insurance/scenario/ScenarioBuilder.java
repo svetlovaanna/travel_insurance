@@ -1,4 +1,4 @@
-package org.javaguru.travel.insurance.core;
+package org.javaguru.travel.insurance.scenario;
 
 import org.junit.jupiter.params.provider.Arguments;
 

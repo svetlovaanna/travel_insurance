@@ -1,10 +1,12 @@
 package org.javaguru.travel.insurance.rest;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Builder
 @Getter @Setter
 public class TravelCalculatePremiumResponse {
 
