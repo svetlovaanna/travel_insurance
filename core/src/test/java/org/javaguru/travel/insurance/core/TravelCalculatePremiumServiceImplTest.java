@@ -1,5 +1,6 @@
 package org.javaguru.travel.insurance.core;
 
+import org.javaguru.travel.insurance.mother.TravelCalculatePremiumServiceImplMother;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequestBuilder;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
@@ -14,6 +15,7 @@ class TravelCalculatePremiumServiceImplTest {
     private final TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl();
     @Test
     public void shouldPopulateResponseFirstName() {
+        TravelCalculatePremiumRequest request1 = TravelCalculatePremiumServiceImplMother.valid();
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequestBuilder().setPersonFirstName("Vasya").setPersonLastName("Pupkin").setAgreementDateFrom(new Date()).setAgreementDateTo(new Date()).createTravelCalculatePremiumRequest();
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(response.getPersonFirstName(), request.getPersonFirstName());
