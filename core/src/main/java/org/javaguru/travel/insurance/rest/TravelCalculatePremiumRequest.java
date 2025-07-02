@@ -3,10 +3,13 @@ package org.javaguru.travel.insurance.rest;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
 import java.util.Date;
 
 @Builder //(toBuilder = true)
 @Getter @Setter
+@ToString
 public class TravelCalculatePremiumRequest {
 
     private String personFirstName;

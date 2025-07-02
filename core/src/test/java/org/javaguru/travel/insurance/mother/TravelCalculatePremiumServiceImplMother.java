@@ -5,7 +5,7 @@ import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import java.util.Date;
 
 public class TravelCalculatePremiumServiceImplMother {
-    public static TravelCalculatePremiumRequest valid() {
+    public static TravelCalculatePremiumRequest defailtValue() {
         return TravelCalculatePremiumRequest.builder()
                 .personFirstName("Dima")
                 .personLastName("Pupkin")
