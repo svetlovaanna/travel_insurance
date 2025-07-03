@@ -48,7 +48,7 @@ jobs:
       run: ./gradlew clean
 
   dependency-submission:
-
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -69,7 +69,9 @@ jobs:
 # ==============================================
 # 3. Пуш в ОБЩИЙ репозиторий
 # ==============================================
-
+  push-to-repo:
+    needs: build
+    steps:
     - name: Import GPG key and sign commit (✔️ Verified)
       if: success() && startsWith(github.event.head_commit.message, 'TASK')
       env:
@@ -118,6 +120,9 @@ jobs:
 # ==============================================
         # 5. Уведомления в Telegram
         # ==============================================
+  telegram:
+    needs: build
+    steps:
     - name: Telegram Success
       if: success()
       uses: appleboy/telegram-action@master
