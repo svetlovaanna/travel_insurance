@@ -71,6 +71,7 @@ jobs:
 # ==============================================
   push-to-repo:
     needs: build
+    runs-on: ubuntu-latest
     steps:
     - name: Import GPG key and sign commit (✔️ Verified)
       if: success() && startsWith(github.event.head_commit.message, 'TASK')
@@ -122,6 +123,7 @@ jobs:
         # ==============================================
   telegram:
     needs: build
+    runs-on: ubuntu-latest
     steps:
     - name: Telegram Success
       if: success()
