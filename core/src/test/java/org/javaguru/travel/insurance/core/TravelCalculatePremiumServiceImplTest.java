@@ -15,7 +15,7 @@ class TravelCalculatePremiumServiceImplTest {
         TravelCalculatePremiumRequest request = TravelCalculatePremiumServiceImplMother.defailtValue();
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         System.out.println(request);
-        assertEquals(response.getPersonFirstName(), "");//request.getPersonFirstName());
+        assertEquals(response.getPersonFirstName(), request.getPersonFirstName());
     }
     @Test
     void shouldPopulateResponseLastName() {
