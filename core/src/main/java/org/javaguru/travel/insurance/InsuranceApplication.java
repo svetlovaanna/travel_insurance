@@ -7,7 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class InsuranceApplication {
 
         public static void main(String[] args) {
-        SpringApplication.run(InsuranceApplication.class, args);
+            String question = """
+                    I wonder when I'll be able to configure 
+                    my brain to work 
+                    in ambiguity and uncertainty mode?
+                    """;
+            System.out.println(question);
+            SpringApplication.run(InsuranceApplication.class, args);
     }
 
 }
