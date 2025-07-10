@@ -73,6 +73,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
     - name: Import GPG key and sign commit (✔️ Verified)
       if: success() && startsWith(github.event.head_commit.message, 'TASK')
       env:
