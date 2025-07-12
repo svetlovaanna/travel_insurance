@@ -70,7 +70,7 @@ jobs:
 # 3. Пуш в ОБЩИЙ репозиторий
 # ==============================================
   push-to-repo:
-    needs: build
+    needs: dependency-submission
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -120,12 +120,12 @@ jobs:
 # ==============================================
         # 5. Уведомления в Telegram
         # ==============================================
-  telegram:
-    needs: build
+  telegram-success:
+    needs: [build, dependency-submission, push-to-repo]
     runs-on: ubuntu-latest
+    if: ${{ success() }}
     steps:
     - name: Telegram Success
-      if: success()
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -136,14 +136,24 @@ jobs:
           Коммит: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})
           Логи: [Посмотреть](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
           parse_mode: markdown
+
+  telegram-failure:
+    needs: [ build, dependency-submission, push-to-repo ]
+    runs-on: ubuntu-latest
+    if: ${{ failure() }}
+    steps:
     - name: Telegram Failure
-      if: failure()
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_CHAT_ID }}
         token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         message: |
-          ❌ *Сборка провалена* 
+          ❌ *Ошибка на одном из этапов*
+          ${{
+            needs.build.result == 'failure' && '*Упал этап:* `build`' ||
+            needs.dependency-submission.result == 'failure' && '*Упал этап:* `dependency-submission`' ||
+            needs.push-to-repo.result == 'failure' && '*Упал этап:* `push-to-repo`'
+          }}
            Репозиторий: ${{ github.repository }}
            Коммит: [${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})
            Логи: [Посмотреть](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
