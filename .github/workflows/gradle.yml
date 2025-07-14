@@ -38,10 +38,6 @@ jobs:
     # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4.1.0
-#      uses: gradle/actions/setup-gradle@ccf0d5b8c1b155a4d7e508b8d00f1a8e5c6d0d8f # v4.1.0
-#      uses: gradle/actions/setup-gradle@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
-#    - name: Make gradlew executable
-#      run: chmod +x ./gradlew
     - name: Build with Gradle Wrapper
       run: ./gradlew build
     - name: Clean with Gradle Wrapper
@@ -118,8 +114,8 @@ jobs:
         git push origin main
 
 # ==============================================
-        # 5. Уведомления в Telegram
-        # ==============================================
+# 5. Уведомления в Telegram
+# ==============================================
   telegram-success:
     needs: [build, dependency-submission, push-to-repo]
     runs-on: ubuntu-latest
