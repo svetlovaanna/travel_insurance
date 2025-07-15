@@ -36,6 +36,4 @@ class TravelCalculatePremiumServiceImplTest {
         assertEquals(response.getAgreementDateTo(), request.getAgreementDateTo());
     }
 
-
-
 }
