@@ -21,7 +21,8 @@ class TravelCalculatePremiumServiceImplAIEachFieldTest {
 
     @BeforeEach
     void setUp() {
-        service = new TravelCalculatePremiumServiceImpl();
+        DateTimeService dateTimeService = new DateTimeService();
+        service = new TravelCalculatePremiumServiceImpl(dateTimeService);
     }
 
     // Вспомогательный метод для создания дат

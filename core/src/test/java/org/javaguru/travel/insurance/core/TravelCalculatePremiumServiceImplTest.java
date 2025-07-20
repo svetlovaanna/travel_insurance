@@ -9,7 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TravelCalculatePremiumServiceImplTest {
 
-    private final TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl();
+    DateTimeService dateTimeService = new DateTimeService();
+    private final TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
     @Test
     void shouldPopulateResponseFirstName() {
         TravelCalculatePremiumRequest request = TravelCalculatePremiumServiceImplMother.defailtValue();

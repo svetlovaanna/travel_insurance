@@ -4,11 +4,14 @@ import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-import java.util.concurrent.TimeUnit;
-
 @Component
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
+
+    private DateTimeService dateTimeService;
+
+    public TravelCalculatePremiumServiceImpl(DateTimeService dateTimeService) {
+        this.dateTimeService = dateTimeService;
+    }
 
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
@@ -18,17 +21,11 @@ class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService
         response.setPersonLastName(request.getPersonLastName());
         response.setAgreementDateFrom(request.getAgreementDateFrom());
         response.setAgreementDateTo(request.getAgreementDateTo());
-        response.setAgreementPrice(calculateDays(request));
+        response.setAgreementPrice(this.dateTimeService.calculateDays(request.getAgreementDateFrom(),request.getAgreementDateTo()));
 
 
 
         return response;
-    }
-
-    private BigDecimal calculateDays ( TravelCalculatePremiumRequest request){
-        long diff = request.getAgreementDateTo().getTime() - request.getAgreementDateFrom().getTime();
-        var daysBetween = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-        return BigDecimal.valueOf(daysBetween);
     }
 
 }

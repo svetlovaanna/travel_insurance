@@ -1,9 +1,12 @@
 package org.javaguru.travel.insurance.core;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+@Component
 public class DateTimeService {
 
     BigDecimal calculateDays (Date from, Date to){
