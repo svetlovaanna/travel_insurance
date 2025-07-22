@@ -4,13 +4,21 @@ import org.javaguru.travel.insurance.mother.TravelCalculatePremiumServiceImplMot
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TravelCalculatePremiumServiceImplTest {
 
-    DateTimeService dateTimeService = new DateTimeService();
+    private TravelCalculatePremiumRequest request;
+    private DateTimeService dateTimeService;
     private final TravelCalculatePremiumServiceImpl service = new TravelCalculatePremiumServiceImpl(dateTimeService);
+
+    dateTimeService = mock(DateTimeService .class);
+
+    when(dateTimeService.calculateDays(request.getAgreementDateFrom(), request.getAgreementDateTo())).thenReturn(0L);
+
     @Test
     void shouldPopulateResponseFirstName() {
         TravelCalculatePremiumRequest request = TravelCalculatePremiumServiceImplMother.defailtValue();
