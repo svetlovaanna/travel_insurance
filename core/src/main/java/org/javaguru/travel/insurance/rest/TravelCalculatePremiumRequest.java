@@ -8,7 +8,8 @@ import lombok.ToString;
 import java.util.Date;
 
 @Builder //(toBuilder = true)
-@Getter @Setter
+@Getter
+@Setter
 @ToString
 public class TravelCalculatePremiumRequest {
 
