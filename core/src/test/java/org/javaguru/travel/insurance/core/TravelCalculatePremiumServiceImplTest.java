@@ -5,26 +5,31 @@ import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ExtendWith(MockitoExtension.class)
 class TravelCalculatePremiumServiceImplTest {
 
     private TravelCalculatePremiumRequest request;
-    private DateTimeService dateTimeService;
+    @Mock private DateTimeService dateTimeService;
+
+    @InjectMocks
     private TravelCalculatePremiumServiceImpl service;
 
     @BeforeEach
     void setUp() {
         request = TravelCalculatePremiumServiceImplMother.defailtValue();
-        dateTimeService = mock(DateTimeService.class);
         when(dateTimeService.calculateDays(request.getAgreementDateFrom(), request.getAgreementDateTo())).thenReturn(BigDecimal.ZERO);
-        service = new TravelCalculatePremiumServiceImpl(dateTimeService);
+        //service = new TravelCalculatePremiumServiceImpl(dateTimeService);
     }
 
     @Test
