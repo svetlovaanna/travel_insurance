@@ -1,12 +1,17 @@
 package org.javaguru.travel.insurance.rest;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter @Setter
 public class TravelCalculatePremiumResponse {
 
@@ -16,17 +21,6 @@ public class TravelCalculatePremiumResponse {
     private Date agreementDateTo;
     private BigDecimal agreementPrice;
 
-    public TravelCalculatePremiumResponse() {
-    }
 
-    public TravelCalculatePremiumResponse(String personFirstName, String personLastName,
-                                          Date agreementDateFrom, Date agreementDateTo,
-                                          BigDecimal agreementPrice) {
-        this.personFirstName = personFirstName;
-        this.personLastName = personLastName;
-        this.agreementDateFrom = agreementDateFrom;
-        this.agreementDateTo = agreementDateTo;
-        this.agreementPrice = agreementPrice;
-    }
 
 }

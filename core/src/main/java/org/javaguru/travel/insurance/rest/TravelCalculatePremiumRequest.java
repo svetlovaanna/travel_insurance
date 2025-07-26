@@ -1,13 +1,18 @@
 package org.javaguru.travel.insurance.rest;
 
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Builder //(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -17,17 +22,6 @@ public class TravelCalculatePremiumRequest {
     private String personLastName;
     private Date agreementDateFrom;
     private Date agreementDateTo;
-
-    public TravelCalculatePremiumRequest() {
-    }
-
-    public TravelCalculatePremiumRequest(String personFirstName, String personLastName,
-                                         Date agreementDateFrom, Date agreementDateTo) {
-        this.personFirstName = personFirstName;
-        this.personLastName = personLastName;
-        this.agreementDateFrom = agreementDateFrom;
-        this.agreementDateTo = agreementDateTo;
-    }
 
 
 }
