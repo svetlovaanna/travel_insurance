@@ -1,5 +1,7 @@
 package org.javaguru.travel.insurance.rest;
 
+import org.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
+
 import java.util.Date;
 
 public class TravelCalculatePremiumRequestBuilder {

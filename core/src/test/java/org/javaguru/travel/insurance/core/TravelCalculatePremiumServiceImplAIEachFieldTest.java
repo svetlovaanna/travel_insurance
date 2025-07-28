@@ -1,8 +1,9 @@
 package org.javaguru.travel.insurance.core;
 
-import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
+import org.javaguru.travel.insurance.core.TravelCalculatePremiumServiceImpl;
+import org.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequestBuilder;
-import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
+import org.javaguru.travel.insurance.dto.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

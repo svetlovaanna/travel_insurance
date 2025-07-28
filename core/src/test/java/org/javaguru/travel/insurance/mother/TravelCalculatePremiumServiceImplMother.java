@@ -1,6 +1,6 @@
 package org.javaguru.travel.insurance.mother;
 
-import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
+import org.javaguru.travel.insurance.dto.TravelCalculatePremiumRequest;
 
 import java.util.Date;
 
