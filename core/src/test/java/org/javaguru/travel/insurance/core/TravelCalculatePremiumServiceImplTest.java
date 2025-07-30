@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.mockito.Mockito.when;
 
@@ -22,6 +23,7 @@ class TravelCalculatePremiumServiceImplTest {
 
     private TravelCalculatePremiumRequest request;
     @Mock private DateTimeService dateTimeService;
+    @Mock private TravelCalculatePremiumRequestValidator requestValidator;
 
     @InjectMocks
     private TravelCalculatePremiumServiceImpl service;
@@ -30,6 +32,7 @@ class TravelCalculatePremiumServiceImplTest {
     void setUp() {
         request = TravelCalculatePremiumServiceImplMother.defailtValue();
         when(dateTimeService.calculateDays(request.getAgreementDateFrom(), request.getAgreementDateTo())).thenReturn(BigDecimal.ZERO);
+        when(requestValidator.validate(request)).thenReturn(List.of());
         //service = new TravelCalculatePremiumServiceImpl(dateTimeService);
     }
 
