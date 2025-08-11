@@ -31,7 +31,7 @@ class TravelCalculatePremiumServiceImplTest {
     @BeforeEach
     void setUp() {
         request = TravelCalculatePremiumServiceImplMother.defailtValue();
-        when(dateTimeService.calculateDays(request.getAgreementDateFrom(), request.getAgreementDateTo())).thenReturn(BigDecimal.ZERO);
+        when(dateTimeService.getDaysBetween(request.getAgreementDateFrom(), request.getAgreementDateTo())).thenReturn(BigDecimal.ZERO);
         when(requestValidator.validate(request)).thenReturn(List.of());
         //service = new TravelCalculatePremiumServiceImpl(dateTimeService);
     }

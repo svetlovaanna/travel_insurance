@@ -13,7 +13,7 @@ class DateTimeServiceTest {
         Date from = new Date();
         Date to = new Date();
         DateTimeService service = new DateTimeService();
-        var result = service.calculateDays(from, to);
+        var result = service.getDaysBetween(from, to);
         assertEquals(0, result.longValue());
     }
 
