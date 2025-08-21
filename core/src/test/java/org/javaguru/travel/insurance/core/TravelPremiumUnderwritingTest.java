@@ -35,7 +35,6 @@ public class TravelPremiumUnderwritingTest {
         assertEquals(new BigDecimal(9), premium);
     }
 
-
     private Date createDate(String dateStr) {
         try {
             return new SimpleDateFormat("dd.MM.yyyy").parse(dateStr);
