@@ -40,7 +40,6 @@ public class TravelCalculatePremiumControllerTest {
                 .andExpect(jsonPath("agreementPrice", is(4)))
                 .andReturn();
     }
-
 }
 
 
