@@ -1,7 +1,7 @@
-package java.core;
+package core;
 
-import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
-import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
+import rest.TravelCalculatePremiumRequest;
+import rest.TravelCalculatePremiumResponse;
 
 public interface TravelCalculatePremiumService {
 

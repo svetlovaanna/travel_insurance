@@ -1,4 +1,4 @@
-package java.rest;
+package rest;
 
 import java.util.Date;
 
