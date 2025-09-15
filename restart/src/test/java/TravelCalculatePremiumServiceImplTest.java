@@ -1,5 +1,3 @@
-//package java;
-
 import org.junit.jupiter.api.Test;
 
 class TravelCalculatePremiumServiceImplTest {
@@ -8,5 +6,4 @@ class TravelCalculatePremiumServiceImplTest {
     public void deleteMe() {
 
     }
-
 }
