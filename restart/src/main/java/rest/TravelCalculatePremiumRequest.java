@@ -51,5 +51,6 @@ public class TravelCalculatePremiumRequest {
     public void setAgreementDateTo(final Date agreementDateTo) {
         this.agreementDateTo = agreementDateTo;
     }
+
 }
 
