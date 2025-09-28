@@ -8,7 +8,8 @@ public class InsuranceApplication {
 
         public static void main(String[] args) {
             String think = """
-                    
+                    ПРосто находись в нужном направлении.
+                    Результат придет.
                     """;
             System.out.println(think);
             SpringApplication.run(InsuranceApplication.class, args);
