@@ -13,5 +13,4 @@ public class InsuranceApplication {
             System.out.println(think);
             SpringApplication.run(InsuranceApplication.class, args);
     }
-
 }
